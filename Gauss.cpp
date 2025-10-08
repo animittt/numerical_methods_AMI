@@ -30,15 +30,14 @@ void printVec(const std::vector<double>& vec)
 
 std::size_t ArgMax(const Matrix& matr, std::size_t i)
 {
-    double MAX = matr[i][i]; 
+    double MAX = std::abs(matr[i][i]);
     std::size_t max_index = i;
-    
 
-    for (std::size_t j = i + 1; j < matr[i].size(); ++j)
+    for (std::size_t j = i + 1; j < matr.size(); ++j)
     {
-        if (matr[j][i] >= MAX) 
+        if (std::abs(matr[j][i]) > MAX)
         {
-            MAX = matr[i][j];
+            MAX = std::abs(matr[j][i]);
             max_index = j;
         }
     }
@@ -63,6 +62,7 @@ double dot(const std::vector<double>& a, const std::vector<double>& b)
     }
     return sum;
 }
+
 void GaussMethod(Matrix& A, std::vector<double>& b)
 {
     for(std::size_t i = 0; i < A.size() - 1; ++i)
@@ -98,11 +98,10 @@ void GaussMethod(Matrix& A, std::vector<double>& b)
 int main()
 {
     Matrix A = {
-        {2,1,-1,3},
-        {1,3,2,-1},
-        {3,1,4,2}, 
-        {1,-1,1,2}
+        {-3,3,1},
+        {0,4,-2},
+        {-3, 1, 5}
     };
-    std::vector<double> B = {9,1,13,3};
+    std::vector<double> B = {-2,5,1};
     GaussMethod(A, B);
 }
