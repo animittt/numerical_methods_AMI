@@ -1,6 +1,6 @@
 # implementation of the iterative methods for solving systems of linear equations Ax = b
-# Method 1: x = Bx + c (Jacobi method)
-# Method 2: x_i = sum(B_ij * x_j) + c_i (Gauss-Seidel method)
+# Method 1: x = Bx + c (Jacobi method) where B = -D^(-1)(L + U) and c = D^(-1)b
+# Method 2: x_i = sum(B_ij * x_j) + c_i (Gauss-Seidel method) uses new values as soon as they are available
 
 import numpy as np
 
