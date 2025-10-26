@@ -1,5 +1,12 @@
-# implementation of the Newton-Raphson method for finding roots of equations f(x) = 0
-
+# implementation of the Newton method for finding roots of equations f(x) = 0
+"""
+корень уравнения изолирован на отрезке [а,b], f(a)*f(b)<0
+f'(x) и f''(x) имеют постоянный знак на этом отрезке (т.е. функция монотонна и вогнута или выпукла)
+начальное приближение x0 выбирается в зависимости от знаков f(a), f(b) и f''(x) на отрезке: 
+если f(a) и f(b) имеют разные знаки, то x0 = a или x0 = b, в зависимости от знака f''(x).
+Если f(a)*f''(a)>0, то x0 = a, иначе x0 = b
+условие фурье для сходимости метода: f(x0)*f''(x0) > 0
+"""
 import random
 import time
 

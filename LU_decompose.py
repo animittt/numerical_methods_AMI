@@ -1,14 +1,18 @@
 import numpy as np
 # implementation of the LU decomposition method for solving systems of linear equations Ax = b
-
+"""
+чтобы метод LU-разложения работал, матрица A должна иметь ненулевые главные (угловые) миноры.
+формулы для вычисления элементов L и U:
+L[i, j] = A[i, j] - sum(L[i, k] * U[k, j] for k in range(j)) для j <= i
+U[i, j] = (A[i, j] - sum(L[i, k] * U[k, j] for k in range(i))) / L[i, i] для j > i
+"""
 def LU_solve(L, U, b):
     n = L.shape[0]
 
     # Forward substitution: L y = b
     y = np.zeros(n)
     for i in range(n):
-        y[i] = (b[i] - np.dot(L[i, :i], y[:i])) / L[i, i]   # <-- divide by L[i,i]
-
+        y[i] = (b[i] - np.dot(L[i, :i], y[:i])) / L[i, i]
     # Backward substitution: U x = y
     x = np.zeros(n)
     for i in reversed(range(n)):

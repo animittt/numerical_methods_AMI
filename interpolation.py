@@ -1,10 +1,11 @@
-#interpolation
+#Lagrange interpolation polynomial for given data points
+# P(z) = sum(y_i * L_i(z)) where L_i(z) = product((z - x_k)/(x_i - x_k)) for k != i
 import numpy as np
 import sympy as sp
 import matplotlib.pyplot as plt
 
-x = np.linspace(0,3.2,17)
-y = np.array([1,0.98,0.92,0.83,0.7,0.54,0.36,0.17,-0.03,-0.23,-0.42,-0.59,-0.74,-0.86,-0.94,-0.99,-0.99])
+x = np.linspace(0, 3.2, 17)
+y = np.array([1, 0.98, 0.92, 0.83, 0.7, 0.54, 0.36, 0.17, -0.03, -0.23, -0.42, -0.59, -0.74, -0.86, -0.94, -0.99, -0.99])
 z = sp.Symbol('z')
 
 def interpolation(x, y, z):
@@ -25,6 +26,8 @@ plt.axhline(0, color='black', linewidth=1)
 plt.axvline(0, color='black', linewidth=1)
 
 A = sp.lambdify(z, result, 'numpy')
+# print the polynomial
+print(result)
 xres = np.linspace(0, 3.2, 2000)
 yres = A(xres)
 plt.plot(xres, yres)
